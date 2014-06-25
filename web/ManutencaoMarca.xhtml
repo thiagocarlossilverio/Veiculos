@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+   
+
+    <h:head>
+        <title>Manutenção de marca</title>
+    </h:head>
+    <h:body style="font-size: 12px">
+        
+<div class="img">
+            
+        <h:graphicImage  width="1263px" url="/imagens/logo.png" />
+        
+        </div>
+        
+
+                <h:form id="formPrinc">
+                    <p:growl id="growl"/>
+
+                    <p:dataTable id="tabela" 
+                                 var="use" 
+                                 value="#{marcaController.listaMarca}"
+                                 paginator="true" 
+                                rowsPerPageTemplate="5,10,15">  
+                        <p:column>  
+                            <f:facet name="header">  
+                                Descrição:  
+                            </f:facet>  
+                            <h:outputText value="#{use.descricao}" />  
+                        </p:column>   
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Alterar"/>
+                            </f:facet>
+                            <p:commandButton actionListener="#{marcaController.prepararAlterar}" 
+                                             value="Alterar" 
+                                             update=":formDialog:infoUser" 
+                                             oncomplete="dia.show()"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton  
+                                
+                                 action="padrao.xhtml" 
+                                 value="Voltar"/>
+                            
+                            <p:commandButton actionListener="#{marcaController.prepararInserir}" 
+                                             value="Inserir" 
+                                             update=":formDialog:infoUser" 
+                                             oncomplete="dia.show()"/>
+                        </f:facet>
+                    </p:dataTable> 
+                </h:form>
+
+                <p:dialog header="Gerencia de Marcas de Veiculos" 
+                          widgetVar="dia"  
+                          resizable="false" 
+                          modal="true" 
+                          showEffect="slide" 
+                          width="500">
+                    <h:form id="formDialog">
+                        <h:panelGrid id="infoUser" columns="2" style="margin-bottom:10px">
+
+                            <h:outputText value="Descrição: *"/>
+                            <p:inputText 
+                                required="true"
+                                label="Descrição"
+                                size="50"
+                                maxlength="50"
+                                value="#{marcaController.mrc.descricao}"/>
+
+
+                        </h:panelGrid>
+                        <p:commandButton update=":formPrinc:tabela" 
+                                         oncomplete="dia.hide();" 
+                                         actionListener="#{marcaController.gravar}" 
+                                         value="Salvar"/>
+                    </h:form>
+                </p:dialog>
+
+           
+
+    </h:body>
+                
+                
+</html>
+

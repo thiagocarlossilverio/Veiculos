@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <h:head>
+        <title>ACESSO RESTRITO:</title>
+    </h:head>
+
+
+
+    <h:body style="font-size: 10px">
+        <h:form>
+           
+ <ui:decorate template="TemaLogin.xhtml">
+                <ui:define name="centro">
+                    <p:growl id="msg"/>
+                    <p:panel header="Acesso Restrito"> 
+                        <h:panelGrid columns="2" cellpadding="2" id="painel"> 
+                            <h:outputText value="Usuario: *"/>
+                            <p:inputText
+                                id="usuario"
+                                required="true"
+                                label="usuario"
+                                maxlength="50"
+                                size="50"
+                                value="#{usuarioController.user.usuario}"/>
+                            
+                            
+                            <h:outputText value="Senha: *"/>
+                            <p:password
+                                id="Senha"
+                                required="true"
+                                label="Senha"
+                                maxlength="50"
+                                size="50"
+                                value="#{usuarioController.user.senha}"/>
+
+
+                        </h:panelGrid>
+<p:commandButton  
+    
+    
+                              
+                            ajax="false"
+                            action="voltar" 
+                            value="Voltar"/>
+
+                        <p:commandButton 
+                            id="btn"
+                            value="Login"
+                            ajax="false"
+                            action="#{usuarioController.logar}"
+                            update="msg" />
+                    </p:panel>
+
+ </ui:define>
+            </ui:decorate>
+        </h:form>
+    </h:body>
+
+</html>

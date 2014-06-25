@@ -1,0 +1,18 @@
+ <p:carousel id="tabsCarousel" rows="1" autoPlayInterval="4000"  circular="true" var="veic" itemStyle="height:350px;width:710px;" effect="easeInStrong" value="#{veiculoController.listarVeiculos}">  
+                <p:tab title="Veiculos a vendas">  
+                    <h:form id="aaa2">
+                        <h:panelGrid columns="2" cellpadding="10" >  
+                             <h:outputText value="Imagem"> </h:outputText>
+                            <p:graphicImage value="#{veiculoController.getFoto(veic.fotocapa)}"/>  
+                            <h:outputText style="font-size: 12px" value="Modelo:#{veic.modelo.descricao}" />
+                            <h:outputText style="font-size: 12px" value="Cor:#{veic.cor}" />
+                            <h:outputText style="font-size: 12px" value="Ano:#{veic.ano}" />
+                            <h:outputText style="font-size: 12px" value="Valor:#{veic.valor}" />
+                           
+                            <h:outputText style="font-size: 12px" value="Descrição:#{veic.descricao}" />
+                        </h:panelGrid> 
+                        
+                        <p:graphicImage value="#{veiculoController.imagem}" />  
+                    </h:form>
+                </p:tab>  
+            </p:carousel> 

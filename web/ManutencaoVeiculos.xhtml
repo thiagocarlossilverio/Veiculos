@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+    <h:head>
+        <title>Manutenção de modelo</title>
+    </h:head>
+
+    <h:body style="font-size: 12px">
+        <div class="img">
+
+            <h:graphicImage  width="1263px" url="/imagens/logo.png" />
+
+        </div>
+
+
+        <h:form id="formPrinc">
+            <p:growl id="growl"/>
+
+            <p:dataTable id="tabela" 
+                         var="veic" 
+                         value="#{veiculoController.listarVeiculos}"
+                         paginator="true" 
+                         rowsPerPageTemplate="5,10,15">  
+                <p:column>  
+                    <f:facet name="header">  
+                        Modelo:  
+                    </f:facet>  
+                    <h:outputText value="#{veic.modelo.descricao}" />  
+                </p:column>   
+                <p:column>  
+                    <f:facet name="header">  
+                        Cor:  
+                    </f:facet>  
+                    <h:outputText value="#{veic.cor}" />  
+                </p:column> 
+
+                <p:column>  
+                    <f:facet name="header">  
+                        Ano:  
+                    </f:facet>  
+                    <h:outputText value="#{veic.ano}" />  
+                </p:column>   
+
+                <p:column>  
+                    <f:facet name="header">  
+                        Descrição:  
+                    </f:facet>  
+                    <h:outputText value="#{veic.descricao}" />  
+                </p:column> 
+                <p:column>  
+                    <f:facet name="header">  
+                        Valor:  
+                    </f:facet>  
+                    <h:outputText value="#{veic.valor}" />  
+                </p:column>   
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Alterar"/>
+                    </f:facet>
+                    <p:commandButton actionListener="#{veiculoController.prepararAlterar}" 
+                                     value="Alterar" 
+                                     update=":formDialog:infoUser" 
+                                     oncomplete="dia.show()"/>
+                </p:column>
+
+                <f:facet name="footer">  
+                    
+                    <p:commandButton  
+                                
+                                 action="padrao.xhtml" 
+                                 value="Voltar"/>
+                    
+                    <p:commandButton actionListener="#{veiculoController.prepararInserir}" 
+                                     value="Inserir" 
+                                     update=":formDialog:infoUser" 
+                                     oncomplete="dia.show()"/>
+                </f:facet>
+
+            </p:dataTable> 
+        </h:form>
+
+        <p:dialog header="Gerencia de  Veiculos" 
+                  widgetVar="dia"  
+                  resizable="false" 
+                  modal="true" 
+                  showEffect="slide" 
+                  width="500">
+            <h:form id="formDialog">
+                <h:panelGrid id="infoUser" columns="2" style="margin-bottom:10px">
+
+                    <h:outputText value="Tipo de Veiculo: *" />
+                    <p:selectOneMenu required="true" value="#{veiculoController.veic.tipo}">  
+                    <f:selectItem itemLabel="Selecione o tipo" itemValue="" />  
+                     <f:selectItem itemLabel="Carro" itemValue="Carro" />  
+                     <f:selectItem itemLabel="Moto" itemValue="Moto" />  
+                     <f:selectItem itemLabel="Caminhão" itemValue="Caminhão" />  
+        </p:selectOneMenu>  
+                     
+                     
+                            <h:outputText value="Modelo do Veiculo: *" /> 
+                            
+                            <h:selectOneMenu  value="#{veiculoController.idModelo}"  >  
+                                <f:selectItems value="#{modeloController.lista}" var="cv" itemLabel="#{cv.descricao}  #{cv.idmodelo}"  itemValue="#{cv.idmodelo}"/> 
+                            </h:selectOneMenu>  
+
+                            <h:outputText value="Ano: *"/>
+                            <p:inputText 
+                                id="ano"
+                                required="true"
+                                label="Ano"
+                                maxlength="5"
+                                value="#{veiculoController.veic.ano}"
+
+                                />
+
+
+                            <h:outputText value="Cor: *"/>
+                            <p:inputText
+                                id="cor"
+                                required="true"
+                                label="Cor"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.cor}"/>
+
+                            <h:outputText value="Descrição: *"/>
+                            <p:inputTextarea
+                                id="descricao"
+                                required="true"
+                                label="Descrição"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.descricao}"
+                                />
+
+
+
+                            <h:outputText value="Valor: *"/>
+                            <p:inputText
+                                id="valor"
+                                required="true"
+                                label="Valor"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.valor}"/>
+
+                            <h:outputText value="Estado: *" />  
+                            <h:selectOneMenu required="true" value="#{estadosController.est.idestados}"  > 
+                                <f:selectItem itemLabel="Selecione um Estado" itemValue="" />
+                                <f:selectItems value="#{estadosController.lista}" var="cva" itemLabel="#{cva.estado}" itemValue="#{cva.idestados}"/> 
+                            </h:selectOneMenu>  
+
+                      
+                            <h:outputText value="Cidade: *" />  
+                            <h:selectOneMenu required="true" value="#{veiculoController.idCidades}"  >
+                                <f:selectItem itemLabel="Selecione uma Cidade" itemValue="" />
+                                <f:selectItems value="#{cidadesController.lista}" var="cvr" itemLabel="#{cvr.cidade}" itemValue="#{cvr.idcidades}"/> 
+                            </h:selectOneMenu> 
+
+
+ <h:outputText value="Foto Capa:  "/>
+ <p:graphicImage value="#{veiculoController.imagem}" id="imagem" cache="false"/>
+                    <h:column/>
+                    <h:column>
+                        <p:fileUpload fileUploadListener="#{veiculoController.handleFileUpload}"  
+            mode="advanced"  
+            update="messages"  
+            auto="true"  
+            sizeLimit="10000000"   
+            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+  
+    <p:growl id="messages" showDetail="true"/>
+                    </h:column>
+
+
+                </h:panelGrid>
+                <p:commandButton update=":formPrinc:tabela" 
+                                 oncomplete="dia.hide();" 
+                                 actionListener="#{modeloController.gravar}" 
+                                 value="Salvar"/>
+            </h:form>
+        </p:dialog>
+
+
+
+    </h:body>
+
+</html>
+

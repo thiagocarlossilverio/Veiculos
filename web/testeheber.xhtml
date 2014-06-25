@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Exemplo Cadastro FOTO - Primefaces</title>
+    </h:head>
+
+    <p:outputPanel id="listaJogadores">
+        <h:form>
+            <p:galleria value="#{veiculoController.lista}" var="imagem">
+                <p:graphicImage value="#{imagem.fotocapa}"/>
+            </p:galleria>
+        </h:form>
+    </p:outputPanel>
+</html>

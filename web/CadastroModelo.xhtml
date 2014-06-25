@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Cadastro de Modelos de Veiculos:</title>
+    </h:head>
+
+    <h:body style="font-size: 10px">
+        <ui:decorate template="padrao.xhtml">
+            <ui:define name="centro">
+
+                <h:form>
+                    <p:growl id="msg"/>
+                    <p:panel header="Cadastro de Modelos de Veiculos"> 
+                        <h:panelGrid columns="2" cellpadding="2" id="painel"> 
+                            <h:outputText value="Descrição: *"/>
+                            <p:inputText
+                                id="descricao"
+                                required="true"
+                                label="Descrição"
+                                maxlength="50"
+                                size="50"
+                                value="#{modeloController.mrl.descricao}"/>
+
+
+                            <h:outputText value="Marca do Veiculo: *" />  
+                            
+                            <h:selectOneMenu required="true" value="#{modeloController.idMarca}"  >  
+                                <f:selectItem itemLabel="Selecione um Modelo" itemValue="" />
+                                <f:selectItems value="#{marcaController.lista}" var="cv" itemLabel="#{cv.descricao}" itemValue="#{cv.idmarca}"/> 
+                            </h:selectOneMenu>  
+
+                        </h:panelGrid>
+
+                        <p:commandButton 
+                            id="btn"
+                            
+                            ajax="false"
+                            value="salvar"
+                            action="salvar"
+                            update="msg" actionListener="#{modeloController.gravar}"/>
+                    </p:panel>
+
+                </h:form>
+            </ui:define>>
+        </ui:decorate>
+    </h:body>
+</html>

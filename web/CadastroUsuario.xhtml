@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Cadastro de Usuários</title>
+    </h:head>
+
+    <h:body style="font-size: 10px">
+        <ui:decorate template="padrao.xhtml">
+            <ui:define name="centro">
+                <h:form id="principal">
+
+
+                   
+                     <p:growl id="msg"/>
+
+                    <p:panel header="Cadastro de Usuários"> 
+                        <h:panelGrid columns="2" cellpadding="2" id="painel"> 
+                            <h:outputText value="Nome: *"/>
+                            <p:inputText
+                                id="nome"
+                                required="true"
+                                label="Nome"
+                                maxlength="50"
+                                size="50"
+                                value="#{usuarioController.user.nome}"/>
+
+                            <h:outputText value="CPF: "/>
+
+                            <p:inputMask
+                                id="cpf"
+                                required="true"
+                                label="Cpf"
+                                maxlength="11"
+                                size="50"
+                                mask="999.999.999-99"
+                                value="#{usuarioController.user.cpf}"/>
+
+                            <h:outputText value="Telefone: "/>
+                            <p:inputMask
+                                id="telefone"
+                                 required="true"
+                                mask="(99) 9999 - 9999"
+                                value="#{usuarioController.user.telefone}"/>
+
+                            <h:outputText value="Email: "/>
+                            <p:inputText 
+                                id="mail" 
+                                 required="true"
+                                value="#{usuarioController.user.email}"/>    
+
+
+
+                            <h:outputText value="Usuário: "/>
+                            <p:inputText 
+                                id="usuario"
+                                 required="true"
+                                value="#{usuarioController.user.usuario}"/>
+
+                            <h:outputText value="Senha: *"/>
+                            <p:password id="senha"
+                                         required="true"
+                                        label="senha:"
+                                        feedback="true"
+                                        minLength="6"
+                                        value="#{usuarioController.user.senha}"/>
+
+                            <h:outputText value="Confirma Senha: "/>
+                            <p:password id="confSenha"
+                                         required="true"
+                                        feedback="false"
+                                        minLength="6"/>
+
+                            <h:outputText value="#{usuarioController.user.tipo}" />  
+                            <p:selectOneRadio id="options"  required="true" value="#{usuarioController.user.tipo}"> 
+                                
+                                <f:selectItem itemLabel="ADMINISTRADOR:" itemValue="administrador" />  
+                                <f:selectItem itemLabel="OPERADOR:" itemValue="operador" />  
+                            </p:selectOneRadio> 
+
+                            <p:commandButton 
+                                id="btn"
+                                value="salvar"
+                                ajax="false"
+                                action="salvar"
+                                update="msg" actionListener="#{usuarioController.gravar}"/>
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+
+    </h:body>
+</html>

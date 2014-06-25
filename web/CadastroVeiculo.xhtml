@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <h:head>
+        <title>Cadastro de Veiculos</title>
+        <link href="#{facesContext.externalContext.requestContextPath}/css/custom-theme/skin.css" rel="stylesheet" type="text/css" />
+    </h:head>
+
+    <h:body style="font-size: 10px">
+        <ui:decorate template="padrao.xhtml">
+            <ui:define name="centro"> 
+
+                <h:form enctype="multipart/form-data">
+
+                    <p:growl id="msg"/>
+                    <p:panel header="Cadastro de Veiculos"> 
+
+                        <h:panelGrid columns="2" cellpadding="2" id="painel"> 
+
+                            <h:outputText value="Tipo de Veiculo: *" />
+                            <p:selectOneMenu required="true" value="#{veiculoController.veic.tipo}">  
+                                <f:selectItem itemLabel="Selecione o tipo" itemValue="" />  
+                                <f:selectItem itemLabel="Carro" itemValue="Carro" />  
+                                <f:selectItem itemLabel="Moto" itemValue="Moto" />  
+                                <f:selectItem itemLabel="Caminhão" itemValue="Caminhão" />  
+                            </p:selectOneMenu>  
+
+
+                            <h:outputLabel value="Modelo de Veiculo:* " />  
+                            <h:selectOneMenu value="#{veiculoController.id}"  >
+                                <f:selectItems value="#{modeloController.lista}" var="tq" itemLabel="#{tq.descricao}" itemValue="#{tq.idmodelo}"/>
+                            </h:selectOneMenu>
+
+                            <h:outputText value="Ano: *"/>
+                            <p:inputText 
+                                id="ano"
+                                required="true"
+                                label="Ano"
+                                maxlength="5"
+                                value="#{veiculoController.veic.ano}"
+
+                                />
+
+
+                            <h:outputText value="Cor: *"/>
+                            <p:inputText
+                                id="cor"
+                                required="true"
+                                label="Cor"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.cor}"/>
+
+                            <h:outputText value="Descrição: *"/>
+                            <p:inputTextarea
+                                id="descricao"
+                                required="true"
+                                label="Descrição"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.descricao}"
+                                />
+
+
+
+                            <h:outputText value="Valor: *"/>
+                            <p:inputText
+                                id="valor"
+                                required="true"
+                                label="Valor"
+                                maxlength="50"
+                                size="50"
+                                value="#{veiculoController.veic.valor}"/>
+
+                            <h:outputText value="Estado: *" />  
+                            <h:selectOneMenu required="true" value="#{estadosController.est.idestados}"  > 
+                                <f:selectItem itemLabel="Selecione um Estado" itemValue="" />
+                                <f:selectItems value="#{estadosController.lista}" var="cva" itemLabel="#{cva.estado}" itemValue="#{cva.idestados}"/> 
+                            </h:selectOneMenu>  
+
+
+                            <h:outputText value="Cidade: *" />  
+                            <h:selectOneMenu required="true" value="#{veiculoController.idCidades}"  >
+                                <f:selectItem itemLabel="Selecione uma Cidade" itemValue="" />
+                                <f:selectItems value="#{cidadesController.lista}" var="cvr" itemLabel="#{cvr.cidade}" itemValue="#{cvr.idcidades}"/> 
+                            </h:selectOneMenu> 
+
+
+                            <h:outputText value="Foto Capa:  "/>
+                            <p:graphicImage value="#{veiculoController.imagem}" id="imagem" cache="false"/>
+                            <h:column/>
+                            <h:column>
+                                <p:fileUpload fileUploadListener="#{veiculoController.handleFileUpload}"  
+                                              mode="advanced"  
+                                              widgetVar="true"
+                                              update="messages"  
+                                              auto="true"  
+                                              sizeLimit="10000000"   
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+
+                                <p:growl id="messages" showDetail="true"/>
+                            </h:column>
+
+
+                        </h:panelGrid>
+
+                        <p:commandButton 
+                            id="btn"
+                            value="salvar"
+                            ajax="false"
+                            update="msg"  actionListener="#{veiculoController.gravar}" icon="ui-icon-disk"/>
+
+
+                    </p:panel>                  
+
+
+                </h:form>
+
+            </ui:define>
+        </ui:decorate>           
+    </h:body>
+</html>

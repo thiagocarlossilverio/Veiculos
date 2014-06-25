@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="CadastroUsuario.xhtml" x="585" y="40" zoom="true"/>
+        <Node id="ManutencaoModelo.xhtml" x="138" y="102" zoom="true"/>
+        <Node id="ListarCaminhao.xhtml" x="658" y="140" zoom="true"/>
+        <Node id="Principal.xhtml" x="425" y="321" zoom="true"/>
+        <Node id="filtro.xhtml" x="145" y="450" zoom="true"/>
+        <Node id="ListarMoto.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="ManutencaoMarca.xhtml" x="653" y="292" zoom="true"/>
+        <Node id="padrao.xhtml" x="763" y="89" zoom="true"/>
+        <Node id="CadastroModelo.xhtml" x="113" y="289" zoom="true"/>
+        <Node id="TemaLogin.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="Falha.xhtml" x="634" y="410" zoom="true"/>
+        <Node id="CadastroVeiculo.xhtml" x="292" y="240" zoom="true"/>
+        <Node id="index.xhtml" x="201" y="542" zoom="true"/>
+        <Node id="menu.xhtml" x="814" y="222" zoom="true"/>
+        <Node id="ListarCarro.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="CadastroMarca.xhtml" x="302" y="30" zoom="true"/>
+        <Node id="Login.xhtml" x="560" y="580" zoom="true"/>
+        <Node id="ManutencaoUsuario.xhtml" x="443" y="191" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

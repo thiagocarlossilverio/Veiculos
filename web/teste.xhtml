@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	      xmlns:ui="http://java.sun.com/jsf/facelets"
+	      xmlns:h="http://java.sun.com/jsf/html"
+	      xmlns:p="http://primefaces.org/ui"
+	      xmlns:f="http://java.sun.com/jsf/core">
+	 <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	    <h:head>
+	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>: Seu Carro Novo ::</title>
+	        <style type="text/css">
+	            body {background-color: #eeeeee; font-size: 12px}
+	        </style>
+	    </h:head>
+	    <h:body>
+	          
+ 
+                <p:carousel id="tabsCarousel" rows="1" var="veic" itemStyle="height:350px;width:750px;" effect="easeInStrong" value="#{veiculoController.listarVeiculos}">  
+    <p:tab title="Veiculos a vendas">  
+        <h:panelGrid columns="2" cellpadding="10" >  
+            <p:graphicImage value="Foto:#{veiculoController.imagem}" width="80px"/>  
+            <h:outputText value="Descrição:#{veic.modelo.descricao}" />
+            <h:outputText value="Cor:#{veic.cor}" />
+            <h:outputText value="Ano:#{veic.ano}" />
+            <h:outputText value="Descrição:#{veic.descricao}" />
+            <h:outputText value="Valor:#{veic.valor}" />
+        </h:panelGrid>  
+    </p:tab>  
+    
+</p:carousel>  
+
+
+
+	    </h:body>
+	</html>

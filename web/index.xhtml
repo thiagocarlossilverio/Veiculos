@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>: Seu Carro Novo ::</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+        </style>
+    </h:head>
+    <h:body>
+        <div align="center">  
+            <ui:decorate template="Padrao2.xhtml">
+                <ui:define name="centro">
+                    
+                    <p:carousel value="#{veiculoController.listarVeiculos}" var="veic" itemStyle="height:250px;width:236px;"  
+                                easing="easeOutBounce" autoPlayInterval="4000"  circular="true">  
+                        <h:form id="formulario">
+                            <h:panelGrid columns="1" style="width:100%" cellpadding="5">  
+                             
+                                <p:graphicImage id="imagem" value=" #{veiculoController.imagem}"  cache="false"/> 
+
+                                <h:outputText value="Modelo: #{veic.modelo.descricao}" />  
+
+                                <h:outputText value="Ano: #{veic.ano}" />  
+
+                                <h:outputText value="Cor: #{veic.cor}" />  
+                                <h:outputText value="Valor: #{veic.valor}" />  
+
+
+                            </h:panelGrid> 
+                             
+                        </h:form>
+
+                    </p:carousel>  
+                </ui:define>
+            </ui:decorate>
+        </div>
+        
+    </h:body>
+</html>

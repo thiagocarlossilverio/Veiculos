@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>:: Seu Carro Novo>>Listar Moto ::</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 10px}
+        </style>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <ui:decorate template="Padrao2.xhtml">
+            <ui:define name="centro">
+                    <h:form id="formPrinc">
+                        <p:growl id="growl"/>
+
+                        <p:dataTable id="tabela" 
+                                     var="veic" 
+                                     value="#{veiculoController.listarMoto}"
+                                     paginator="true"
+                                     rowsPerPageTemplate="5,10,15">  
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Modelo:  
+                                </f:facet>  
+                                <h:outputText value="#{veic.modelo.descricao}" />  
+                            </p:column>   
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Cor:  
+                                </f:facet>  
+                                <h:outputText value="#{veic.cor}" />  
+                            </p:column> 
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Ano:  
+                                </f:facet>  
+                                <h:outputText value="#{veic.ano}" />  
+                            </p:column>   
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Descrição:  
+                                </f:facet>  
+                                <h:outputText value="#{veic.descricao}" />  
+                            </p:column> 
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Valor:  
+                                </f:facet>  
+                                <h:outputText value="#{veic.valor}" />  
+                            </p:column>   
+                        </p:dataTable> 
+                    </h:form>
+                </ui:define>
+        </ui:decorate>
+        </div>
+    </h:body>
+</html>

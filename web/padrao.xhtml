@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	      xmlns:ui="http://java.sun.com/jsf/facelets"
+	      xmlns:h="http://java.sun.com/jsf/html"
+	      xmlns:p="http://primefaces.org/ui"
+	      xmlns:f="http://java.sun.com/jsf/core">
+	 <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	    <h:head>
+	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	        <title>:: Seu Carro Novo ::</title>
+	        <style type="text/css">
+	            body {background-color: #eeeeee; font-size: 12px}
+	        </style>
+	    </h:head>
+	    <h:body>
+	        <div align="center">
+	            <p:layout style="min-width:1020px;max-width:1020px;min-height:600px"> 
+                        <p:layoutUnit position="north" size="100" closable="false"> 
+                            <l>
+                            <h:graphicImage width="985px" url="/imagens/logo.png" />
+                             </l>
+	                </p:layoutUnit>
+	 
+	                <p:layoutUnit position="west" size="250"> 
+	                    <ui:insert name="menu">
+	                        <h:form>
+	                            <p:menu style="width: 250px">
+	                                <p:submenu label="Menu">
+                                            <p:menuitem value="Inicio" url="index.xhtml" icon="ui-icon-extlink"/>
+                                            <p:menuitem value="Cadastro Marcas de Veiculos" url="CadastroMarca.xhtml" icon="ui-icon-contact"/>
+                                            <p:menuitem value="Manutenção de Marcas" url="ManutencaoMarca.xhtml" icon="ui-icon-gear"/>
+                                            <p:menuitem value="Cadastro Modelo de Veiculos" url="CadastroModelo.xhtml" icon="ui-icon-bookmark"/>
+                                            <p:menuitem value="Manutenção de Modelo" url="ManutencaoModelo.xhtml" icon="ui-icon-gear"/>
+                                            <p:menuitem value="Cadastro de Veiculos" url="CadastroVeiculo.xhtml" icon="ui-icon-star"/>
+                                            <p:menuitem value="Manutenção de Veiculos" url="ManutencaoVeiculos.xhtml" icon="ui-icon-gear"/>
+                                             <p:menuitem value="Cadastro de Usuario" url="CadastroUsuario.xhtml" icon="ui-icon-person"/>
+                                              <p:menuitem value="Manutenção de Usuario" url="ManutencaoUsuario.xhtml" icon="ui-icon-gear"/>
+                                    <p:menuitem value="Sair" icon="ui-icon-key" />
+	                                            
+	                                </p:submenu>
+	                            </p:menu>
+	                        </h:form>
+	                    </ui:insert>
+	                </p:layoutUnit> 
+	                <p:layoutUnit position="center"> 
+                    <ui:insert name="centro">
+                      <h:graphicImage   url="imagens/logoadministrativo.png" />
+                    </ui:insert>
+                </p:layoutUnit> 
+	            </p:layout> 
+	        </div>
+	    </h:body>
+	</html>

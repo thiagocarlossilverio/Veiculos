@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>:: Seu Carro Novo ::</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 10px}
+        </style>
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:layout style="min-width:1020px;max-width:1020px;min-height:600px"> 
+                <p:layoutUnit position="north" size="190"> 
+
+                    <h:graphicImage  url="/imagens/logo.png"/>
+                    <p:panel>                            
+                        <p:dock  position="top" halign="center" itemWidth="70">  
+                            <p:menuitem  value="Inicio" icon="/imagens/home.png" url="index.xhtml"/>  
+                            <p:menuitem value="Carros" icon="/imagens/carro.png" url="ListarCarro.xhtml"/>  
+                            <p:menuitem value="Caminhões" icon="/imagens/caminhao.png" url="ListarCaminhao.xhtml"/>  
+                            <p:menuitem value="moto" icon="/imagens/moto.png" url="ListarMoto.xhtml"/>  
+                            <p:menuitem value="Tabela Fipe" icon="/imagens/fipe.png" url="http://www.fipe.org.br/web/index.asp?aspx=/web/indices/veiculos/introducao.aspx"/>  
+                            <p:menuitem value="Link" icon="/imagens/link.png" url="#"/>  
+                            <p:menuitem value="RSS" icon="/imagens/rss.png" url="#"/>  
+                            <p:menuitem value="Area Restrita" icon="/imagens/cadeado.png" url="Login.xhtml"/>  
+                        </p:dock>  
+                    </p:panel>
+                </p:layoutUnit> 
+
+
+
+
+                <p:layoutUnit position="west" size="280"> 
+                    <ui:insert name="menu">
+                        <h:form>
+                            <p:growl id="msg"/>
+
+                            <h:panelGrid columns="1" cellpadding="2" id="painel" style="font-size: 12px">
+
+
+
+
+                                <h:outputText value="Estado:" />
+
+                                <p:tooltip for="estado" value="Selecione um Estado para fazer a Consulta" showEffect="slide" hideEffect="explode" />  
+                                <h:selectOneMenu id="estado" value="#{estadosController.est}"  >  
+                                    <f:selectItem itemLabel="Selecione um Estado" itemValue="" />
+                                    <f:selectItems value="#{estadosController.lista}" var="cv" itemLabel="#{cv.estado}" itemValue="#{cv.idestados}"/> 
+                                </h:selectOneMenu>  
+
+
+                                <h:outputText value="Cidade:" />
+                                <p:tooltip for="cidade" value="Selecione uma Cidade para fazer a Consulta" showEffect="slide" hideEffect="explode" />
+                                <h:selectOneMenu id="cidade" value="#{veiculoController.veic.idcidades}"  >  
+                                    <f:selectItem itemLabel="Selecione uma Cidade" itemValue="" />
+                                    <f:selectItems value="#{cidadesController.lista}" var="cv" itemLabel="#{cv.cidade}" itemValue="#{cv.idcidades}"/> 
+                                </h:selectOneMenu> 
+
+                                <h:outputText value="Marca:" />  
+                                <p:tooltip for="marca" value="Selecione uma Marca para fazer a Consulta" showEffect="slide" hideEffect="explode" />
+                                <h:selectOneMenu id="marca" value="#{modeloController.mrl.idmarca}"  >  
+                                    <f:selectItem itemLabel="Selecione uma Marca" itemValue="" />
+                                    <f:selectItems value="#{marcaController.lista}" var="cv" itemLabel="#{cv.descricao}" itemValue="#{cv.idmarca}"/> 
+                                </h:selectOneMenu>  
+
+                                <h:outputText value="Modelo:" /> 
+                                <p:tooltip for="modelo" value="Selecione um modelo para fazer a Consulta" showEffect="slide" hideEffect="explode" />
+                                <h:selectOneMenu  id="modelo" value="#{veiculoController.veic.idmodelo}"  >  
+                                    <f:selectItem itemLabel="Selecione um Modelo" itemValue="" />
+                                    <f:selectItems value="#{modeloController.lista}" var="cv" itemLabel="#{cv.descricao}" itemValue="#{cv.idmodelo}"/> 
+                                </h:selectOneMenu>  
+                                <h:outputText value="Ano:"/> 
+                                <p:tooltip for="ano" value="Selecione uma data para fazer a Consulta" showEffect="slide" hideEffect="explode" />
+                                <p:calendar  value="#{veiculoController.veic.ano}" 
+                                             id="ano"
+                                             pattern="dd/MM/yyyy"
+                                             yearRange="1900:2090" 
+                                             readOnlyInputText="true"
+                                             navigator="true" 
+                                             required="true" 
+                                             label="Ano"/>
+
+                            </h:panelGrid>  
+
+
+
+
+                            <p:commandButton 
+                                id="btn"
+                                value="Pesquisar"
+                                update="msg"  icon="ui-icon-search"/>
+
+
+
+                        </h:form>
+                    </ui:insert>
+                </p:layoutUnit> 
+                <p:layoutUnit position="center"> 
+                    <ui:insert id="centro" name="centro">
+
+
+
+                    </ui:insert>
+                </p:layoutUnit> 
+            </p:layout>
+        </div>
+    </h:body>
+
+
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <navigation-rule>
+        <from-view-id>/CadastroMarca.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salvar</from-outcome>
+            <to-view-id>/CadastroModelo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/CadastroModelo.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salvar</from-outcome>
+            <to-view-id>/ManutencaoModelo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/CadastroUsuario.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salvar</from-outcome>
+            <to-view-id>/ManutencaoUsuario.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>falha</from-outcome>
+            <to-view-id>/Falha.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/Principal.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>voltar</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Falha.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/Login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

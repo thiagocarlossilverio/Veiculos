@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+    <body style="font-size: 10px">
+        
+        <h:form>
+            <p:growl id="msg"/>
+            <p:panel> 
+                <h:panelGrid columns="2" cellpadding="2" id="painel"> 
+                    
+      <h:outputText value="Estado" />  
+                    <h:selectOneMenu value="#{estadosController.est}"  >  
+                        <f:selectItems value="#{estadosController.lista}" var="cv" itemLabel="#{cv.estado}" itemValue="#{cv.idestados}"/> 
+                            </h:selectOneMenu>  
+                    
+                    
+                    <h:outputText value="Cidade" />  
+                    <h:selectOneMenu value="#{veiculoController.veic.idcidades}"  >  
+                        <f:selectItems value="#{cidadesController.lista}" var="cv" itemLabel="#{cv.cidade}" itemValue="#{cv.idcidades}"/> 
+                            </h:selectOneMenu> 
+                    
+                      <h:outputText value="Marca" />  
+                            
+                            <h:selectOneMenu value="#{modeloController.mrl.idmarca}"  >  
+                                <f:selectItems value="#{marcaController.lista}" var="cv" itemLabel="#{cv.descricao}" itemValue="#{cv.idmarca}"/> 
+                            </h:selectOneMenu>  
+                      
+                     <h:outputText value="Modelo" /> 
+                     
+                     <h:selectOneMenu value="#{veiculoController.veic.idmodelo}"  >  
+                         <f:selectItems value="#{modeloController.lista}" var="cv" itemLabel="#{cv.descricao}" itemValue="#{cv.idmodelo}"/> 
+                            </h:selectOneMenu>  
+                    
+                    <h:outputText value="Ano"/>
+                    <p:inputText 
+                        id="ano"
+                        required="true"
+                        label="Ano"
+                        maxlength="5"
+                        value="#{veiculoController.veic.ano}" />                    
+                 
+                 
+                </h:panelGrid>  
+            
+            
+                
+                
+            <p:commandButton 
+                            id="btn"
+                            value="Pesquisar"
+                            update="msg"  icon="ui-icon-search"/>
+            
+            
+        </p:panel>
+         </h:form>
+    </body>
+</html>

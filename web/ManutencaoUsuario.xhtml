@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<link rel="stylesheet" type="text/css" href="css/estilo.css" /> 
+    <h:head>
+        <title>Manutenção Usuario</title>
+    </h:head>
+    <h:body style="font-size: 12px">
+        <div class="img">
+            
+        <h:graphicImage  width="1263px" url="/imagens/logo.png" />
+        
+        </div>
+        <h:form id="formPrinc">
+            <p:growl id="growl"/>
+
+            <p:dataTable id="tabela" 
+                         var="user" 
+                         value="#{usuarioController.listarUsuarios}"
+                         paginator="true" 
+                         rowsPerPageTemplate="5,10,15">  
+                <p:column>  
+                    <f:facet name="header">  
+                        Nome:  
+                    </f:facet>  
+                    <h:outputText value="#{user.nome}" />  
+                </p:column>   
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        CPF:  
+                    </f:facet>  
+                    <h:outputText value="#{user.cpf}" />  
+                </p:column> 
+                <p:column>  
+                    <f:facet name="header">  
+                       TELEFONE:  
+                    </f:facet>  
+                    <h:outputText value="#{user.telefone}" />  
+                </p:column>  
+                
+                <p:column>  
+                    <f:facet name="header">  
+                       E-MAIL: 
+                    </f:facet>  
+                    <h:outputText value="#{user.email}" />  
+                </p:column>   
+                
+                <p:column>  
+                    <f:facet name="header">  
+                       USUARIO:  
+                    </f:facet>  
+                    <h:outputText value="#{user.usuario}" />  
+                </p:column>   
+
+                <p:column>  
+                    <f:facet name="header">  
+                        SENHA:  
+                    </f:facet>  
+                    <h:outputText value="#{user.senha}" />  
+                </p:column> 
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        TIPO: 
+                    </f:facet>  
+                    <h:outputText value="#{user.tipo}" />  
+                </p:column>   
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Alterar"/>
+                    </f:facet>
+                    <p:commandButton actionListener="#{usuarioController.prepararAlterar}" 
+                                     value="Alterar" 
+                                     update=":formDialog:infoUser" 
+                                     oncomplete="dia.show()"/>
+                </p:column>
+
+                <f:facet name="footer"> 
+                    
+                    <p:commandButton  
+                                
+                                 action="padrao.xhtml" 
+                                 value="Voltar"/>
+                    
+                    <p:commandButton actionListener="#{usuarioController.prepararInserir}" 
+                                     value="Inserir" 
+                                     update=":formDialog:infoUser" 
+                                     oncomplete="dia.show()"/>
+                </f:facet>
+
+            </p:dataTable> 
+        </h:form>
+
+        <p:dialog header="Gerencia de Usuários" 
+                  widgetVar="dia"  
+                  resizable="false" 
+                  modal="true" 
+                  showEffect="slide" 
+                  width="500">
+            <h:form id="formDialog">
+                <h:panelGrid id="infoUser" columns="2" style="margin-bottom:10px">
+
+                    <h:outputText value="Nome: *"/>
+                    <p:inputText 
+                        required="true"
+                        label="Nome"
+                        size="50"
+                        maxlength="50"
+                        value="#{usuarioController.user.nome}"/>
+
+                    <h:outputText value="CPF: "/>
+                    <p:inputMask 
+                        required="true"
+                        label="CPF"
+                        mask="999.999.999-99"
+                        size="50"
+                        value="#{usuarioController.user.cpf}"/>
+
+                   
+
+                    <h:outputText value="Fone: *"/>
+                    <p:inputMask 
+                        size="50"
+                        rendered="true"
+                        label="Fone"
+                        mask="(99) 9999 - 9999"
+                        value="#{usuarioController.user.telefone}"/>
+
+                    <h:outputText value="Usuário: *"/>
+                    <p:inputText 
+                        required="true"
+                        label="Usuario"
+                        size="50"
+                        maxlength="15"
+                        value="#{usuarioController.user.usuario}"/>
+
+                    <h:outputLabel value="Senha: *" />  
+                    <p:password 
+                        id="pwd1" 
+                        value="#{usuarioController.user.senha}" 
+                        match="pwd2" 
+                        label="Senha" 
+                        required="true"
+                        feedback="true"
+                        size="50"/>  
+
+                    <h:outputLabel value="Confirma Senha: *" />  
+                    <p:password 
+                        id="pwd2" 
+                        value="#{usuarioController.user.senha}" 
+                        label="confirmação de Senha" 
+                        required="true"
+                        feedback="true"
+                        size="50"/> 
+                     <h:outputText value="Email: *"/>
+                    <p:inputText 
+                        size="50"
+                        required="true"
+                        label="Email"
+                        maxlength="40"
+                        value="#{usuarioController.user.email}"/>
+
+ <h:outputText value="#{usuarioController.user.tipo}" />  
+                            <p:selectOneRadio id="options" value="#{usuarioController.user.tipo}">  
+                                <f:selectItem itemLabel="ADMINISTRADOR:" itemValue="administrador" />  
+                                <f:selectItem itemLabel="OPERADOR:" itemValue="operador" />  
+                            </p:selectOneRadio> 
+
+                   
+                </h:panelGrid>
+                
+                
+              
+                
+                <p:commandButton update=":formPrinc:tabela" 
+                                 oncomplete="dia.hide();" 
+                                 actionListener="#{usuarioController.gravar}" 
+                                 value="Salvar"/>
+            </h:form>
+        </p:dialog>
+
+
+
+    </h:body>
+</html>
+
